@@ -55,7 +55,7 @@ LastQueryTime getLastQueryRuntime(odb::database& db) {
 int main(int argc, char** argv) {
 
 	using namespace std;
-	database db("SA", "AdvancedDB17", "yelp3", "localhost");
+	database db("SA", "AdvancedDB17", "yelp", "localhost");
 
 	findHours(db, "kn");
 
