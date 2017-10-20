@@ -1,4 +1,5 @@
 #include "Yelp-odb.hxx"
+#include <algorithm>
 #include <iostream>
 #include <odb/database.hxx>
 #include <odb/mssql/database.hxx>
