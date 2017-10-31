@@ -23,3 +23,60 @@ public:
 // ---------------------------------------------
 
 
+#pragma db object
+class business {
+public:
+private:
+    friend class odb::access;
+    business() {}
+#pragma db id auto
+    unsigned long id;
+    std::string name;
+    odb::lazy_weak_ptr<review> review_;
+    odb::lazy_weak_ptr<hours> hours_;
+
+
+};
+
+#pragma db object
+class hours {
+public:
+private:
+    friend class odb::access;
+    hours() {}
+#pragma db id auto
+    unsigned long id;
+    std::string hours_;
+    std::shared_ptr<business> business_id;
+    //business foreign key
+};
+
+#pragma db object
+class review {
+public:
+private:
+    friend class odb::access;
+    review() {}
+#pragma db id auto
+    unsigned long id;
+#pragma db
+    std::shared_ptr<user> user_id;
+    std::shared_ptr<business> business_id;
+    // user foreign key
+};
+
+#pragma db object
+class user {
+public:
+    std::string get_name() {
+        return this->name;
+    }
+private:
+    friend class odb::access;
+    user() {}
+#pragma db id auto
+    unsigned long id;
+    std::string name;
+    odb::lazy_weak_ptr<review> review_;
+};
+
