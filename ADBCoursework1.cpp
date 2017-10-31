@@ -19,7 +19,7 @@ typedef odb::query<business> b_query_t;
 typedef odb::query<hours> h_query_t;
 typedef odb::result<user> u_result_t;
 typedef odb::result<review> r_result_t;
-typedef odb::result<hours> r_result_t;
+typedef odb::result<hours> h_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
