@@ -40,7 +40,8 @@ private:
 #pragma db id auto
 	std::string id;
     std::string name;
-    odb::lazy_weak_ptr<review> review_;
+//    odb::lazy_weak_ptr<review> review_;
+#pragma db inverse(business_id)
     odb::lazy_weak_ptr<hours> hours_;
 
 
