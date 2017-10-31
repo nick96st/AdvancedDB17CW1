@@ -34,7 +34,7 @@ private:
     friend class odb::access;
     business() {}
 #pragma db id auto
-    unsigned long id;
+	std::string id;
     std::string name;
     odb::lazy_weak_ptr<review> review_;
     odb::lazy_weak_ptr<hours> hours_;
@@ -55,14 +55,14 @@ private:
     //business foreign key
 };
 
-#pragma db object table("hours")
+#pragma db object table("review")
 class review {
 public:
 private:
     friend class odb::access;
     review() {}
 #pragma db id auto
-    unsigned long id;
+    std::string id;
     std::shared_ptr<user> user_id;
     std::shared_ptr<business> business_id;
     // user foreign key
@@ -78,7 +78,7 @@ private:
     friend class odb::access;
     user() {}
 #pragma db id auto
-    unsigned long id;
+    std::string id;
     std::string name;
 #pragma db inverse(user_id)
     odb::lazy_weak_ptr<review> review_;
