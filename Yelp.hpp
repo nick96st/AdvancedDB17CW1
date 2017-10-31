@@ -31,6 +31,9 @@ class review;
 #pragma db object table("business")
 class business {
 public:
+	std::string get_name() {
+		return this->name;
+	}
 private:
     friend class odb::access;
     business() {}
