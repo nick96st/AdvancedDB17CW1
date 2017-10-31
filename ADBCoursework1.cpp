@@ -34,7 +34,9 @@ std::vector<std::string> findHours(odb::database& db, std::string username) {
 	r_query_t get_reviews_with_username(r_query_t::user_id->name == username);
 	r_result_t reviews_objs(db.query(get_reviews_with_username));
 	for (auto obj:reviews_objs) {
-		std::cout<<obj.get_business_id().get_hours()<<endl;
+		auto obj_hour = obj.get_business_id().get_hours();
+		auto res = db.load(obj_hour);
+		std::cout<<res.get_hours()<<endl;
 	}
 
 	b_query_t get_businesses_from_reviews_with_username(b_query_t::review_id->user_id->name == username);
