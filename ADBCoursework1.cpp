@@ -59,7 +59,6 @@ std::vector<StarCount> countStars(odb::database& db, float latMin, float latMax,
 													  "AND business.latitude BETWEEN " +  to_string(latMin) + " AND " + to_string(latMax) + " ) as aceptables " +
 													  " GROUP BY aceptables.stars");
 	for(auto item : results) {
-		std::cout<<item.stars<<":"<<item.count<<endl;
 		result.push_back(item);
 	}
 	// Count the stars
