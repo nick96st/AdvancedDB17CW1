@@ -3,6 +3,7 @@
 #include <odb/lazy-ptr.hxx>
 #include <set>
 #include <string>
+#include <vector>
 
 #pragma db view
 class StarCount{
@@ -81,6 +82,6 @@ private:
     std::string id;
     std::string name;
 #pragma db inverse(user_id)
-    odb::lazy_weak_ptr<review> review_;
+    std::vector<odb::lazy_weak_ptr<review>> review_;
 };
 

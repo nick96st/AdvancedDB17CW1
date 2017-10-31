@@ -18,6 +18,7 @@ typedef odb::query<review> r_query_t;
 typedef odb::query<business> b_query_t;
 typedef odb::query<hours> h_query_t;
 typedef odb::result<user> u_result_t;
+typedef odb::result<review> r_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
@@ -28,6 +29,12 @@ std::vector<std::string> findHours(odb::database& db, std::string username) {
     {
          std::cout<<i.get_name()<<endl;
     }
+
+	r_query_t get_reviews_with_username(r_query_t::user_id->name == username);
+	r_result_t reviews_objs(db.query(get_reviews_with_username));
+	for (auto obj:reviews_objs) {
+		std::cout<<i.get_business_id->name<<endl;
+	}
 	// Your implementation goes here:
 	// Find the hours
 
