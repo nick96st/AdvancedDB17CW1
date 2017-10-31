@@ -1,4 +1,5 @@
 #include "Yelp-odb.hxx"
+#include "Yelp.hpp"
 #include <algorithm>
 #include <iostream>
 #include <odb/database.hxx>
@@ -13,11 +14,67 @@ using odb::query;
 using odb::result;
 using std::to_string;
 
+
+#pragma db object
+class Business {
+public:
+private:
+    friend class odb::access;
+    Business() {}
+#pragma db id auto
+    unsigned long id;
+    std::string name;
+
+};
+
+#pragma db object
+class Hours {
+public:
+private:
+    friend class odb::access;
+    Hours() {}
+#pragma db id auto
+    unsigned long id;
+    std::string hours;
+    std::shared_ptr<Business> business_id;
+    //business foreign key
+};
+
+#pragma db object
+class Review {
+public:
+private:
+    friend class odb::access;
+    Review() {}
+#pragma db id auto
+    unsigned long id;
+    std::shared_ptr<User> user_id;
+    std::shared_ptr<Business> business_id;
+    // User foreign key
+};
+
+#pragma db object
+class User {
+public:
+private:
+    friend class odb::access;
+    User() {}
+#pragma db id auto
+    unsigned long id;
+    std::string name;
+};
+
+
+
+
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
+    odb::query<User> user_q(query<User>::name.compare(username));
+    std::cout<<db.query(user_q)<<endl;
 	transaction t(db.begin());
 	// Your implementation goes here:
 	// Find the hours
+
 	t.commit();
 	return result;
 }
