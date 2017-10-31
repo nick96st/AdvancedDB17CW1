@@ -24,13 +24,13 @@ typedef odb::result<user> u_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
+	transaction t(db.begin());
     u_query_t user_q(u_query_t::name == username);
     u_result_t user_objs(db.query(user_q));
     for (user& i:user_objs)
     {
          std::cout<<i.get_name()<<endl;
     }
-	transaction t(db.begin());
 	// Your implementation goes here:
 	// Find the hours
 
