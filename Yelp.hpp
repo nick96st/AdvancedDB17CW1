@@ -31,11 +31,8 @@ class review;
 #pragma db object table("business")
 class business {
 public:
-	std::string get_name() {
-		return this->name;
-	}
-	odb::lazy_weak_ptr<hours> get_hour_ptr() {
-		return this->hours_;
+	std::string get_id() {
+		return this->id;
 	}
 private:
     friend class odb::access;
