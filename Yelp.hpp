@@ -81,6 +81,7 @@ private:
 #pragma db id auto
     unsigned long id;
     std::string name;
+#pragma db inverse(user_id)
     odb::lazy_weak_ptr<review> review_;
 };
 

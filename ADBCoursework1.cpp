@@ -13,9 +13,6 @@ using odb::query;
 using odb::result;
 using std::to_string;
 
-
-
-
 typedef odb::query<user> u_query_t;
 typedef odb::query<review> r_query_t;
 typedef odb::query<business> b_query_t;
