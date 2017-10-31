@@ -19,22 +19,26 @@ typedef odb::query<business> b_query_t;
 typedef odb::query<hours> h_query_t;
 typedef odb::result<user> u_result_t;
 typedef odb::result<review> r_result_t;
+//typedef odb::result<business> r_
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
 	transaction t(db.begin());
-    u_query_t user_q(u_query_t::name == username);
-    u_result_t user_objs(db.query(user_q));
-    for (user& i:user_objs)
-    {
-         std::cout<<i.get_name()<<endl;
-    }
+//    u_query_t user_q(u_query_t::name == username);
+//    u_result_t user_objs(db.query(user_q));
+//    for (user& i:user_objs)
+//    {
+//         std::cout<<i.get_name()<<endl;
+//    }
 
 	r_query_t get_reviews_with_username(r_query_t::user_id->name == username);
 	r_result_t reviews_objs(db.query(get_reviews_with_username));
 	for (auto obj:reviews_objs) {
-		std::cout<<obj.get_business_id()->get_name()<<endl;
+		std::cout<<obj.get_business_id().get_hours()<<endl;
 	}
+
+	b_query_t get_businesses_from_reviews_with_username(b_query_t::review_id->user_id->name == username);
+	b_result_t
 	// Your implementation goes here:
 	// Find the hours
 
