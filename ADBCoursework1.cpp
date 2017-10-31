@@ -63,6 +63,9 @@ private:
 #pragma db object
 class User {
 public:
+    std::string get_name() {
+        return this.name;
+    }
 private:
     friend class odb::access;
     User() {}
@@ -73,12 +76,17 @@ private:
 };
 
 
-
+typedef odb::query<User> u_query_t;
+typedef odb::query<Review> r_query_t;
+typedef odb::query<Business> b_query_t;
+typedef odb::query<Hours> h_query_t;
+typedef odb::result<User> u_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
-    odb::query<User> user_q(query<User>::name.compare(username));
-    std::cout<<db.query(user_q)<<endl;
+    u_query_t user_q(u_query_t::name.compare(username));
+    u_result_t* user_obj(db.query(user_q));
+    std::cout<<user_obj.get_name()<<endl;
 	transaction t(db.begin());
 	// Your implementation goes here:
 	// Find the hours
