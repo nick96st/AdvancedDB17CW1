@@ -59,7 +59,7 @@ private:
 #pragma db object table("review")
 class review {
 public:
-	std::shared_ptr get_business_id() {
+	std::shared_ptr<business> get_business_id() {
 		return this->business_id;
 	}
 private:
