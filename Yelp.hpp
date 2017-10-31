@@ -27,7 +27,7 @@ class business;
 class hours;
 class review;
 
-#pragma db object
+#pragma db object table("business")
 class business {
 public:
 private:
@@ -42,7 +42,7 @@ private:
 
 };
 
-#pragma db object
+#pragma db object table("hours")
 class hours {
 public:
 private:
@@ -55,7 +55,7 @@ private:
     //business foreign key
 };
 
-#pragma db object
+#pragma db object table("hours")
 class review {
 public:
 private:
@@ -63,13 +63,12 @@ private:
     review() {}
 #pragma db id auto
     unsigned long id;
-
     std::shared_ptr<user> user_id;
     std::shared_ptr<business> business_id;
     // user foreign key
 };
 
-#pragma db object
+#pragma db object table("user")
 class user {
 public:
     std::string get_name() {
