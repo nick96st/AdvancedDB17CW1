@@ -47,12 +47,14 @@ std::vector<std::string> findHours(odb::database& db, std::string username) {
 	return result;
 }
 
+typedef  odb::result<StarCount> sc_result_t;
+
 std::vector<StarCount> countStars(odb::database& db, float latMin, float latMax, float longMin,
 																	float longMax) {
 	std::vector<StarCount> result;
 	transaction t(db.begin());
 	// Your implementation goes here:
-	// db.query<StarCount>("select ...")
+	result = db.query<StarCount>("select stars, count FROM review GROUP BY stars");
 	// Count the stars
 	t.commit();
 	return result;
