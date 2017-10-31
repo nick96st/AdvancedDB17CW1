@@ -19,62 +19,7 @@ class business;
 class hours;
 class review;
 
-#pragma db object
-class business {
-public:
-private:
-    friend class odb::access;
-    business() {}
-#pragma db id auto
-    unsigned long id;
-    std::string name;
-    odb::lazy_weak_ptr<review> review_;
-    odb::lazy_weak_ptr<hours> hours_;
 
-
-};
-
-#pragma db object
-class hours {
-public:
-private:
-    friend class odb::access;
-    hours() {}
-#pragma db id auto
-    unsigned long id;
-    std::string hours;
-    std::shared_ptr<business> business_id;
-    //business foreign key
-};
-
-#pragma db object
-class review {
-public:
-private:
-    friend class odb::access;
-    review() {}
-#pragma db id auto
-    unsigned long id;
-#pragma db
-    std::shared_ptr<user> user_id;
-    std::shared_ptr<business> business_id;
-    // user foreign key
-};
-
-#pragma db object
-class user {
-public:
-    std::string get_name() {
-        return this.name;
-    }
-private:
-    friend class odb::access;
-    user() {}
-#pragma db id auto
-    unsigned long id;
-    std::string name;
-    odb::lazy_weak_ptr<review> review_;
-};
 
 
 typedef odb::query<user> u_query_t;
@@ -85,9 +30,12 @@ typedef odb::result<user> u_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
-    u_query_t user_q(u_query_t::name.compare(username));
-    u_result_t* user_obj(db.query(user_q));
-    std::cout<<user_obj->get_name()<<endl;
+    u_query_t user_q(u_query_t::name == username);
+    u_result_t user_objs(db.query(user_q));
+    for (user& i:user_objs)
+    {
+         std::cout<<i.get_name()<<endl;
+    }
 	transaction t(db.begin());
 	// Your implementation goes here:
 	// Find the hours
