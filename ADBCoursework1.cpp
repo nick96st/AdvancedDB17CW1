@@ -54,7 +54,7 @@ std::vector<StarCount> countStars(odb::database& db, float latMin, float latMax,
 	std::vector<StarCount> result;
 	transaction t(db.begin());
 	// Your implementation goes here:
-	sc_result_t results = db.query<StarCount>(std::string("SELECT stars, COUNT(*) FROM review" +
+	sc_result_t results = db.query<StarCount>(std::string("SELECT stars, COUNT(*) FROM review") +
 													  " GROUP BY review.stars");
 	for(auto item : results) {
 		std::cout<<item.stars<<":"<<item.count<<endl;
