@@ -39,8 +39,8 @@ std::vector<std::string> findHours(odb::database& db, std::string username) {
 		std::cout<<res.get_hours()<<endl;
 	}
 
-	b_query_t get_businesses_from_reviews_with_username(b_query_t::review_id->user_id->name == username);
-	b_result_t
+//	b_query_t get_businesses_from_reviews_with_username(b_query_t::review_id->user_id->name == username);
+//	b_result_t
 	// Your implementation goes here:
 	// Find the hours
 
