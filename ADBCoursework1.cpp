@@ -54,9 +54,10 @@ std::vector<StarCount> countStars(odb::database& db, float latMin, float latMax,
 	std::vector<StarCount> result;
 	transaction t(db.begin());
 	// Your implementation goes here:
-	sc_result_t results = db.query<StarCount>(std::string("select stars, COUNT(stars) FROM (SELECT stars FROM review,business WHERE review.business_id = business.id, ") +
+	sc_result_t results = db.query<StarCount>(std::string("select stars, COUNT(stars) FROM (SELECT stars FROM review,business WHERE review.business_id = business.id AND ") +
 													  "business.longitude BETWEEN " + to_string(longMin) + " AND " + to_string(longMax) +
-													  " , business.latitude BETWEEN" +  to_string(latMin) + " AND " + to_string(latMax) + " GROUP BY stars");
+													  "AND business.latitude BETWEEN" +  to_string(latMin) + " AND " + to_string(latMax) +
+													  " GROUP BY stars");
 	for(auto item : results) {
 		std::cout<<item.stars<<":"<<item.count<<endl;
 		result.push_back(item);
@@ -136,19 +137,19 @@ int main(int argc, char** argv) {
 	using namespace std;
 	database db("SA", "AdvancedDB17", "yelp", "localhost");
 
-	{ // testing find hours
-		auto hours = findHours(db, "kn");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 1: " << (hours == hoursFixtureKn ? "passed" : "failed") << endl;
-
-		hours = findHours(db, "neu");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 2: " << (hours == hoursFixtureNeu ? "passed" : "failed") << endl;
-
-		hours = findHours(db, "Ewr");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 3: " << (hours == hoursFixtureEwr ? "passed" : "failed") << endl;
-	}
+//	{ // testing find hours
+//		auto hours = findHours(db, "kn");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 1: " << (hours == hoursFixtureKn ? "passed" : "failed") << endl;
+//
+//		hours = findHours(db, "neu");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 2: " << (hours == hoursFixtureNeu ? "passed" : "failed") << endl;
+//
+//		hours = findHours(db, "Ewr");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 3: " << (hours == hoursFixtureEwr ? "passed" : "failed") << endl;
+//	}
 
 	{ // testing countStars
 		auto stars = countStars(db, 30.0, 45.7, -100.0, -1.0);
