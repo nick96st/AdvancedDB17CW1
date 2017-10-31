@@ -35,7 +35,7 @@ public:
 		return this->name;
 	}
 	std::string get_hours() {
-		return this->hours_->get_hours();
+		return this->hours_.lock()->get_hours();
 	}
 private:
     friend class odb::access;
