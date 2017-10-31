@@ -63,7 +63,7 @@ private:
     review() {}
 #pragma db id auto
     unsigned long id;
-#pragma db
+
     std::shared_ptr<user> user_id;
     std::shared_ptr<business> business_id;
     // user foreign key
