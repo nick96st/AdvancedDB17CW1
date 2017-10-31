@@ -14,79 +14,80 @@ using odb::result;
 using std::to_string;
 
 
-class User;
-class Business;
-class Hours;
-class Review;
+class user;
+class business;
+class hours;
+class review;
 
 #pragma db object
-class Business {
+class business {
 public:
 private:
     friend class odb::access;
-    Business() {}
+    business() {}
 #pragma db id auto
     unsigned long id;
     std::string name;
-    odb::lazy_weak_ptr<Review> review_;
-    odb::lazy_weak_ptr<Hours> hours_;
+    odb::lazy_weak_ptr<review> review_;
+    odb::lazy_weak_ptr<hours> hours_;
 
 
 };
 
 #pragma db object
-class Hours {
+class hours {
 public:
 private:
     friend class odb::access;
-    Hours() {}
+    hours() {}
 #pragma db id auto
     unsigned long id;
     std::string hours;
-    std::shared_ptr<Business> business_id;
+    std::shared_ptr<business> business_id;
     //business foreign key
 };
 
 #pragma db object
-class Review {
+class review {
 public:
 private:
     friend class odb::access;
-    Review() {}
+    review() {}
 #pragma db id auto
     unsigned long id;
-    std::shared_ptr<User> user_id;
-    std::shared_ptr<Business> business_id;
-    // User foreign key
+#pragma db
+    std::shared_ptr<user> user_id;
+    std::shared_ptr<business> business_id;
+    // user foreign key
 };
 
 #pragma db object
-class User {
+class user {
 public:
     std::string get_name() {
         return this.name;
     }
 private:
     friend class odb::access;
-    User() {}
+    user() {}
 #pragma db id auto
     unsigned long id;
     std::string name;
-    odb::lazy_weak_ptr<Review> review_;
+    odb::lazy_weak_ptr<review> review_;
 };
 
 
-typedef odb::query<User> u_query_t;
-typedef odb::query<Review> r_query_t;
-typedef odb::query<Business> b_query_t;
-typedef odb::query<Hours> h_query_t;
-typedef odb::result<User> u_result_t;
+typedef odb::query<user> u_query_t;
+typedef odb::query<review> r_query_t;
+typedef odb::query<business> b_query_t;
+typedef odb::query<hours> h_query_t;
+typedef odb::result<user> u_result_t;
 
 std::vector<std::string> findHours(odb::database& db, std::string username) {
 	std::vector<std::string> result;
     u_query_t user_q(u_query_t::name.compare(username));
     u_result_t* user_obj(db.query(user_q));
-    std::cout<<user_obj.get_name()<<endl;
+    std::cout<<user_obj->get_name()<<endl;
 	transaction t(db.begin());
 	// Your implementation goes here:
 	// Find the hours
@@ -176,7 +177,7 @@ int main(int argc, char** argv) {
 	using namespace std;
 	database db("SA", "AdvancedDB17", "yelp", "localhost");
 
-	{ // testing find Hours
+	{ // testing find hours
 		auto hours = findHours(db, "kn");
 		std::sort(hours.begin(), hours.end());
 		cout << "findHours Test 1: " << (hours == hoursFixtureKn ? "passed" : "failed") << endl;
