@@ -18,7 +18,7 @@ using std::to_string;
 class User;
 class Business;
 class Hours;
-class Reviews;
+class Review;
 
 #pragma db object
 class Business {
