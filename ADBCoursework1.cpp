@@ -36,19 +36,10 @@ std::vector<std::string> findHours(odb::database& db, std::string username) {
 	for (auto obj:reviews_objs) {
 		h_query_t get_hours_with_matching_business_id(h_query_t::business_id->id == obj.get_business_id()->get_id());
 		h_result_t hours_objs(db.query(get_hours_with_matching_business_id));
-		for(auto obj:hours_objs) {
-			std::cout<<obj.get_hours();
+		for (auto obj:hours_objs) {
 			result.push_back(obj.get_hours());
 		}
-//		obj.get_business_id()->get_hour_ptr()->load();
-//		obj_hour.load();
-//		std:cout<< typeof(obj_hour)<<endl;
-//		a = obj_hour.lock();
-//		std::cout<<obj_hour.lock()->get_hours()<<endl;
 	}
-
-//	b_query_t get_businesses_from_reviews_with_username(b_query_t::review_id->user_id->name == username);
-//	b_result_t
 	// Your implementation goes here:
 	// Find the hours
 
