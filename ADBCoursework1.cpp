@@ -14,12 +14,6 @@ using odb::result;
 using std::to_string;
 
 
-class user;
-class business;
-class hours;
-class review;
-
-
 
 
 typedef odb::query<user> u_query_t;

@@ -22,6 +22,10 @@ public:
 // No need to change anything above this line
 // ---------------------------------------------
 
+class user;
+class business;
+class hours;
+class review;
 
 #pragma db object
 class business {
