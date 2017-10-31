@@ -34,7 +34,7 @@ public:
 	std::string get_name() {
 		return this->name;
 	}
-	std::string get_hour_ptr() {
+	odb::lazy_weak_ptr<hours> get_hour_ptr() {
 		return this->hours_;
 	}
 private:
