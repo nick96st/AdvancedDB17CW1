@@ -15,6 +15,11 @@ using odb::result;
 using std::to_string;
 
 
+class User;
+class Business;
+class Hours;
+class Reviews;
+
 #pragma db object
 class Business {
 public:
@@ -24,6 +29,9 @@ private:
 #pragma db id auto
     unsigned long id;
     std::string name;
+    odb::lazy_weak_ptr<Review> review_;
+    odb::lazy_weak_ptr<Hours> hours_;
+
 
 };
 
@@ -62,6 +70,7 @@ private:
 #pragma db id auto
     unsigned long id;
     std::string name;
+    odb::lazy_weak_ptr<Review> review_;
 };
 
 
