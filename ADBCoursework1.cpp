@@ -81,8 +81,8 @@ void dropIndex(odb::database& db){
 	// don't forget to wrap it in a transaction
 	// drop the columnstore index you've created
     transaction t(db.begin());
-    db.execute("DROP INDEX countingstars");
-    db.execute("DROP INDEX longlat");
+    db.execute("DROP INDEX review.countingstars");
+    db.execute("DROP INDEX business.longlat");
     t.commit();
 }
 
