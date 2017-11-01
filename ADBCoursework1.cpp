@@ -180,7 +180,7 @@ int main(int argc, char** argv) {
 					 << " time before indexing: " << getLastQueryRuntime(db).elapsed_time << endl;
 		}
 
-//		createIndex(db);
+		createIndex(db);
 
 		// warmup run
 		countStars(db, 30.0, 45.7, -100.0, -1.0);
