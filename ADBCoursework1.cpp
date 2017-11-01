@@ -157,18 +157,18 @@ int main(int argc, char** argv) {
 		std::sort(hours.begin(), hours.end());
 		cout << "findHours Test 3: " << (hours == hoursFixtureEwr ? "passed" : "failed") << endl;
 	}
-
-	{ // testing countStars
-		auto stars = countStars(db, 30.0, 45.7, -100.0, -1.0);
-		std::sort(stars.begin(), stars.end(),
-							[](auto left, auto right) { return left.stars < right.stars; });
-		cout << "countStars Test 1: " << (stars == starFixture1 ? "passed" : "failed") << endl;
-
-		stars = countStars(db, 4.0, 40., -90.0, -40.0);
-		std::sort(stars.begin(), stars.end(),
-							[](auto left, auto right) { return left.stars < right.stars; });
-		cout << "countStars Test 2: " << (stars == starFixture2 ? "passed" : "failed") << endl;
-	}
+//
+//	{ // testing countStars
+//		auto stars = countStars(db, 30.0, 45.7, -100.0, -1.0);
+//		std::sort(stars.begin(), stars.end(),
+//							[](auto left, auto right) { return left.stars < right.stars; });
+//		cout << "countStars Test 1: " << (stars == starFixture1 ? "passed" : "failed") << endl;
+//
+//		stars = countStars(db, 4.0, 40., -90.0, -40.0);
+//		std::sort(stars.begin(), stars.end(),
+//							[](auto left, auto right) { return left.stars < right.stars; });
+//		cout << "countStars Test 2: " << (stars == starFixture2 ? "passed" : "failed") << endl;
+//	}
 
 	{ // performance runs
 		
