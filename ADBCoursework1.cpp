@@ -143,20 +143,20 @@ int main(int argc, char** argv) {
 
 	using namespace std;
 	database db("SA", "AdvancedDB17", "yelp", "localhost");
-
-	{ // testing find hours
-		auto hours = findHours(db, "kn");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 1: " << (hours == hoursFixtureKn ? "passed" : "failed") << endl;
-
-		hours = findHours(db, "neu");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 2: " << (hours == hoursFixtureNeu ? "passed" : "failed") << endl;
-
-		hours = findHours(db, "Ewr");
-		std::sort(hours.begin(), hours.end());
-		cout << "findHours Test 3: " << (hours == hoursFixtureEwr ? "passed" : "failed") << endl;
-	}
+//
+//	{ // testing find hours
+//		auto hours = findHours(db, "kn");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 1: " << (hours == hoursFixtureKn ? "passed" : "failed") << endl;
+//
+//		hours = findHours(db, "neu");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 2: " << (hours == hoursFixtureNeu ? "passed" : "failed") << endl;
+//
+//		hours = findHours(db, "Ewr");
+//		std::sort(hours.begin(), hours.end());
+//		cout << "findHours Test 3: " << (hours == hoursFixtureEwr ? "passed" : "failed") << endl;
+//	}
 //
 //	{ // testing countStars
 //		auto stars = countStars(db, 30.0, 45.7, -100.0, -1.0);
