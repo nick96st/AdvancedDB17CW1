@@ -71,8 +71,8 @@ void createIndex(odb::database& db){
 	// don't forget to wrap it in a transaction
 	// create a columnstore index to accelerate your query
     transaction t(db.begin());
-    db.execute("CREATE COLUMNSTORE INDEX countingstars ON review");
-    db.execute("CREATE COLUMNSTORE INDEX longlat ON business ");
+    db.execute("CREATE COLUMNSTORE INDEX countingstars ON review(stars,business_id)");
+    db.execute("CREATE COLUMNSTORE INDEX longlat ON business(longitude,latitude) ");
     t.commit();
 }
 
