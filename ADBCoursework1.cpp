@@ -70,12 +70,18 @@ void createIndex(odb::database& db){
 	// Your implementation goes here:
 	// don't forget to wrap it in a transaction
 	// create a columnstore index to accelerate your query
+    transaction t(db.begin());
+    db.execute("CREATE COLUMNSTORE INDEX countingstars ON review");
+    db.execute("CREATE COLUMNSTORE INDEX longlat ON business ");
+    t.commit();
 }
 
 void dropIndex(odb::database& db){
 	// Your implementation goes here:
 	// don't forget to wrap it in a transaction
 	// drop the columnstore index you've created
+    transaction t(db.begin());
+    t.commit();
 }
 
 // ---------------------------------------------
