@@ -173,7 +173,7 @@ int main(int argc, char** argv) {
 	{ // performance runs
 		
 		// warmup run
-		countStars(db, 30.0, 45.7, -100.0, -1.0);
+//		countStars(db, 30.0, 45.7, -100.0, -1.0);
 		for(size_t i = 0; i < 5; i++) {
 			countStars(db, 30.0, 45.7, -100.0, -1.0);
 			cout << "Run number " << i
@@ -183,7 +183,7 @@ int main(int argc, char** argv) {
 		createIndex(db);
 
 		// warmup run
-		countStars(db, 30.0, 45.7, -100.0, -1.0);
+//		countStars(db, 30.0, 45.7, -100.0, -1.0);
 		for(size_t i = 0; i < 5; i++) {
 			countStars(db, 30.0, 45.7, -100.0, -1.0);
 			cout << " Run number " << i << " time after indexing: " << getLastQueryRuntime(db).elapsed_time
